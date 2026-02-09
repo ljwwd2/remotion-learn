@@ -1,4 +1,4 @@
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { interpolate, spring, useVideoConfig } from "remotion";
 import React from "react";
 
 export const AnimatedText: React.FC<{

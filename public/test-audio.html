@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试音效</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0F172A;
+            color: white;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #3B82F6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #2563EB;
+        }
+    </style>
+</head>
+<body>
+    <h1>音效测试</h1>
+    <p>点击按钮测试每个音效是否能正常播放：</p>
+
+    <button onclick="playSound('whoosh-1.mp3')">播放 Whoosh (场景1→2)</button>
+    <button onclick="playSound('tech-click.mp3')">播放 Tech Click (场景2→3)</button>
+    <button onclick="playSound('swoosh-fast.mp3')">播放 Swoosh Fast (场景3→4)</button>
+    <button onclick="playSound('bass-impact.mp3')">播放 Bass Impact (场景4→5)</button>
+    <button onclick="playSound('hi-tech-ping.mp3')">播放 Hi-Tech Ping (场景5→6)</button>
+
+    <p id="status"></p>
+
+    <script>
+        function playSound(filename) {
+            const status = document.getElementById('status');
+            status.textContent = '正在播放: ' + filename + '...';
+
+            const audio = new Audio('/audio/' + filename);
+            audio.volume = 0.8;
+
+            audio.onended = () => {
+                status.textContent = '播放完成: ' + filename;
+            };
+
+            audio.onerror = (e) => {
+                status.textContent = '播放失败: ' + filename + ' - ' + e;
+            };
+
+            audio.play().catch(err => {
+                status.textContent = '播放被阻止: ' + err.message;
+            });
+        }
+    </script>
+</body>
+</html>

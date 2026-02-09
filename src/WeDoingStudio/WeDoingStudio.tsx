@@ -1,9 +1,7 @@
 import {
   AbsoluteFill,
   interpolate,
-  spring,
   useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 import { z } from "zod";
 import { wedoingStudioSchema } from "./schema";
@@ -14,6 +12,7 @@ import { ServiceAdvantage } from "./scenes/ServiceAdvantage";
 import { CooperationProcess } from "./scenes/CooperationProcess";
 import { ContactInfo } from "./scenes/ContactInfo";
 import { TechBackground } from "./components/TechBackground";
+import { TransitionSounds } from "./components/TransitionSound";
 
 // 动画配置
 const ANIMATION_CONFIG = {
@@ -41,7 +40,7 @@ export const WeDoingStudio: React.FC<z.infer<typeof wedoingStudioSchema>> = ({
     contactInfo: { start: 650, end: 780 },     // 21.67-26秒
   };
 
-  const getCurrentScene = () => {
+  const getCurrentScene = (): "opening" | "teamStrength" | "projectExperience" | "serviceAdvantage" | "cooperationProcess" | "contactInfo" => {
     if (frame < scenes.opening.end) return "opening";
     if (frame < scenes.teamStrength.end) return "teamStrength";
     if (frame < scenes.projectExperience.end) return "projectExperience";
@@ -52,11 +51,10 @@ export const WeDoingStudio: React.FC<z.infer<typeof wedoingStudioSchema>> = ({
 
   const currentScene = getCurrentScene();
   const sceneStartFrame = scenes[currentScene].start;
-  const sceneDuration = scenes[currentScene].end - scenes[currentScene].start;
   const frameInScene = frame - sceneStartFrame;
 
   // 计算动画阶段
-  const getAnimationPhase = () => {
+  const getAnimationPhase = (): { phase: "enter" | "hold" | "exit"; progress: number } => {
     if (frameInScene < ANIMATION_CONFIG.enterDuration) {
       return { phase: "enter", progress: frameInScene / ANIMATION_CONFIG.enterDuration };
     } else if (frameInScene < ANIMATION_CONFIG.enterDuration + ANIMATION_CONFIG.holdDuration) {
@@ -98,6 +96,9 @@ export const WeDoingStudio: React.FC<z.infer<typeof wedoingStudioSchema>> = ({
         overflow: "hidden",
       }}
     >
+      {/* 转场音效 */}
+      <TransitionSounds volume={0.35} />
+
       {/* 科技背景 */}
       <TechBackground
         primaryColor={primaryColor}
