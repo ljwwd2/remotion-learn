@@ -1,7 +1,8 @@
-import { interpolate } from "remotion";
+import { Phone } from "lucide-react";
 import React from "react";
 import { SceneContainer } from "../components/SceneContainer";
 import { AnimatedText } from "../components/AnimatedText";
+import { WeChatIcon } from "../components/WeChatIcon";
 
 export const ContactInfo: React.FC<{
   phase: "enter" | "hold" | "exit";
@@ -69,10 +70,13 @@ export const ContactInfo: React.FC<{
             >
               <div
                 style={{
-                  fontSize: 64,
+                  color: secondaryColor,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                💬
+                <WeChatIcon size={64} color={secondaryColor} />
               </div>
               <div
                 style={{
@@ -115,10 +119,13 @@ export const ContactInfo: React.FC<{
             >
               <div
                 style={{
-                  fontSize: 64,
+                  color: secondaryColor,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                📱
+                <Phone size={64} strokeWidth={1.5} />
               </div>
               <div
                 style={{

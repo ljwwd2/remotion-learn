@@ -1,4 +1,5 @@
 import React from "react";
+import { GraduationCap, Building2, Zap, Link } from "lucide-react";
 import { SceneContainer } from "../components/SceneContainer";
 import { AnimatedText } from "../components/AnimatedText";
 
@@ -11,22 +12,22 @@ export const TeamStrength: React.FC<{
 }> = ({ phase, progress, primaryColor, secondaryColor, textColor }) => {
   const highlights = [
     {
-      icon: "🎓",
+      icon: <GraduationCap size={64} strokeWidth={1.5} />,
       title: "研究生团队",
       desc: "核心成员均为高校研究生",
     },
     {
-      icon: "🏢",
+      icon: <Building2 size={64} strokeWidth={1.5} />,
       title: "大厂背景",
       desc: "多名原大厂员工技术支持",
     },
     {
-      icon: "⚡",
+      icon: <Zap size={64} strokeWidth={1.5} />,
       title: "技术实力",
       desc: "多届算法竞赛获奖者",
     },
     {
-      icon: "🔗",
+      icon: <Link size={64} strokeWidth={1.5} />,
       title: "稳定协作",
       desc: "2年+项目合作经验",
     },
@@ -90,8 +91,10 @@ export const TeamStrength: React.FC<{
               >
                 <div
                   style={{
-                    fontSize: 64,
+                    color: secondaryColor,
                     marginBottom: 20,
+                    display: "flex",
+                    justifyContent: "center",
                   }}
                 >
                   {item.icon}

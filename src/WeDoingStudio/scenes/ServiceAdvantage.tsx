@@ -1,4 +1,5 @@
 import React from "react";
+import { DollarSign, Target, BarChart3, Wrench } from "lucide-react";
 import { SceneContainer } from "../components/SceneContainer";
 import { AnimatedText } from "../components/AnimatedText";
 
@@ -12,27 +13,27 @@ export const ServiceAdvantage: React.FC<{
   const advantages = [
     {
       number: "01",
+      icon: <DollarSign size={56} strokeWidth={1.5} />,
       title: "高性价比",
       desc: "高校研究生团队，无公司运营成本",
-      icon: "💰",
     },
     {
       number: "02",
+      icon: <Target size={56} strokeWidth={1.5} />,
       title: "技术保证",
       desc: "成员质量高于大部分外包公司",
-      icon: "🎯",
     },
     {
       number: "03",
+      icon: <BarChart3 size={56} strokeWidth={1.5} />,
       title: "进度透明",
       desc: "每周周会汇报，确保项目方向正确",
-      icon: "📊",
     },
     {
       number: "04",
+      icon: <Wrench size={56} strokeWidth={1.5} />,
       title: "长期维护",
       desc: "一年免费维护，团队稳定有保障",
-      icon: "🔧",
     },
   ];
 
@@ -111,8 +112,10 @@ export const ServiceAdvantage: React.FC<{
                 {/* 图标 */}
                 <div
                   style={{
-                    fontSize: 56,
+                    color: secondaryColor,
                     marginBottom: 20,
+                    display: "flex",
+                    justifyContent: "center",
                   }}
                 >
                   {item.icon}
@@ -159,7 +162,7 @@ export const ServiceAdvantage: React.FC<{
               color: textColor,
             }}
           >
-            💡 使用飞书 + CodeUp 协作，CI/CD 自动化开发流程
+            使用飞书 + CodeUp 协作，CI/CD 自动化开发流程
           </div>
         </AnimatedText>
       </div>
